@@ -5,8 +5,14 @@ import {
 import {
     ipcConf,
     IPC_EVENT_REGISTER,
+    IPCRegister,
+    IPC_EVENT_PING,
+    IPC_EVENT_PONG,
+    IPCPing,
     IPC_EVENT_CLIENTMESSAGE,
+    IPCClientMessage,
     IPC_EVENT_SERVERMESSAGE,
+    IPCServerMessage,
 } from './ipc';
 import {
     CLIENT_JOIN,
@@ -48,12 +54,13 @@ export class Server{
         } = this;
         const front = ipc.of[parent];
         // Register myself to the front server.
-        front.emit(IPC_EVENT_REGISTER, {
+        const mes: IPCRegister = {
             id: this.id,
             gameid: this.gameid,
-        });
+        };
+        front.emit(IPC_EVENT_REGISTER, mes);
         // register events.
-        front.on(IPC_EVENT_CLIENTMESSAGE, (obj: any)=>{
+        front.on(IPC_EVENT_CLIENTMESSAGE, (obj: IPCClientMessage)=>{
             if (obj == null){
                 ipc.log('Invalid data from the front');
                 return;
@@ -64,8 +71,26 @@ export class Server{
             } = obj;
             this.handleClientMessage(sessionid, payload);
         });
+        front.on(IPC_EVENT_PING, (obj: IPCPing)=>{
+            // PINGにはPONGを返さないといけない
+            if (obj == null){
+                return;
+            }
+            const {
+                code,
+            } = obj;
+            front.emit(IPC_EVENT_PONG, {
+                code,
+            });
+        });
+        front.on('destroy', ()=>{
+            // connection is totally closed.
+            // TODO
+            console.log('Connection is destroyed');
+            process.exit(0);
+        });
     }
-    private sentToClient(sessionid: string, payload: any): void{
+    private sendToClient(sessionid: string, payload: any): void{
         if (this.connected === false){
             return;
         }
@@ -73,10 +98,12 @@ export class Server{
             parent,
         } = this;
         const front = ipc.of[parent];
-        front.emit(IPC_EVENT_SERVERMESSAGE, {
+        const mes: IPCServerMessage = {
             sessionid,
+            gameid: this.gameid,
             payload,
-        });
+        };
+        front.emit(IPC_EVENT_SERVERMESSAGE, mes);
     }
     private handleClientMessage(sessionid: string, payload: any): void{
         if (payload == null){
@@ -94,6 +121,12 @@ export class Server{
             case CLIENT_UNJOIN: {
                 this.handleUnjoinUser(sessionid);
                 break;
+            }
+            default: {
+                // TODO DEBUG
+                this.sendToClient(sessionid, {
+                    hi: 'there',
+                });
             }
         }
     }

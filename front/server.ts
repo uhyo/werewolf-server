@@ -1,6 +1,8 @@
 // front server.
 import * as express from 'express';
 import * as config from 'config';
+
+import * as ipc from './ipc';
 import {
     handleWs,
 } from './ws';
@@ -24,7 +26,11 @@ app.get('/', (_req, res)=>{
 app.listen(config.get<number>('front.port'), ()=>{
     console.log('web server is ready');
 });
-app.ws('/ws/:roomid', (ws, req)=>{
-    console.log('Handling ws conn');
+app.ws('/ws/:gameid', (ws, req)=>{
     handleWs(ws, req);
+});
+
+// DEBUG
+ipc.init(()=>{
+    ipc.openNewRoom(1);
 });
