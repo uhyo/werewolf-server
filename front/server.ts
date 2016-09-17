@@ -1,6 +1,7 @@
 // front server.
 import * as express from 'express';
 import * as config from 'config';
+import * as path from 'path';
 
 import * as ipc from './ipc';
 import {
@@ -17,9 +18,14 @@ interface TExpressWs extends express.Express{
 const app = express() as TExpressWs;
 const wsApi = expressWs(app);
 
+app.set('view engine', 'ejs');
+app.set('views', path.resolve('views'));
+
 // app routings
 app.get('/', (_req, res)=>{
-    res.send('Hello, world!');
+    res.render('index', {
+        title: config.get('site.title'),
+    });
 });
 
 // app setup

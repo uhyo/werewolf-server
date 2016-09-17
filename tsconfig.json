@@ -10,13 +10,15 @@
         "strictNullChecks": true,
         "module":"commonjs",
         "target":"es5",
-        "outDir":"dist/"
+        "outDir":"dist/",
+        "jsx":"react"
     },
     "include":[
+        "client/**/*.ts", "client/**/*.tsx",
         "db/**/*.ts", "keeper/**/*.ts", "front/**/*.ts"
     ],
     "exclude":[
-        "node_modules/**/*.ts"
+        "node_modules"
     ]
 }
 
