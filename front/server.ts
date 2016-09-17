@@ -27,6 +27,18 @@ app.get('/', (_req, res)=>{
         title: config.get('site.title'),
     });
 });
+app.get('/room/:roomid', (req, res)=>{
+    const roomid = parseInt(req.params['roomid']);
+    if (Number.isNaN(roomid)){
+        res.sendStatus(404);
+        return;
+    }
+    // TODO
+    res.render('index', {
+        title: config.get('site.title'),
+        roomid,
+    });
+});
 
 // app setup
 app.listen(config.get<number>('front.port'), ()=>{
