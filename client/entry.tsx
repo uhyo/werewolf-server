@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import {
     getApp,
-}from './app/main';
+}from './component/app';
 
 document.addEventListener('DOMContentLoaded', ()=>{
     const ap = getApp();

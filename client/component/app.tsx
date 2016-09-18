@@ -6,7 +6,7 @@ import {
 import {
     createRoomStore,
 } from '../store/index';
-import MainComponent from './component/main';
+import MainComponent from './main';
 
 // room
 export function getApp(): React.ReactElement<ProviderProps>{
