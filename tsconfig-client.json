@@ -1,0 +1,26 @@
+{
+    "compilerOptions":{
+        "lib": ["dom", "es5", "es2015.core", "es2015.promise", "es2015.collection"],
+        "noEmitOnError": true,
+        "noImplicitAny": true,
+        "noImplicitReturns": true,
+        "noFallthroughCasesInSwitch": true,
+        "noUnusedParameters": true,
+        "removeComments": true,
+        "strictNullChecks": true,
+        "module":"commonjs",
+        "target":"es5",
+        "outDir":"dist-client/",
+        "rootDirs": ["client", "dist-ts/client"],
+        "jsx":"react"
+    },
+    "include":[
+        "client/**/*.ts", "client/**/*.tsx", "dist-ts/**/*.ts"
+    ],
+    "exclude":[
+        "node_modules"
+    ]
+}
+
+
+
