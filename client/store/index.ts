@@ -10,7 +10,11 @@ import {
 } from '../reducer/index';
 
 const initialState: RoomState = {
-    logs: [],
+    logs: [{
+        type: 'message',
+        name: 'てすと次郎',
+        message: 'がおーーーー',
+    }],
 };
 
 export function createRoomStore(): Store<RoomState>{

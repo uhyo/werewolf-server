@@ -35,6 +35,7 @@
     "js-yaml": "^3.6.1",
     "node-ipc": "^8.1.1",
     "redis": "^2.6.2",
+    "reselect": "^2.5.4",
     "werewolf-core": "0.0.1"
   },
   "devDependencies": {
