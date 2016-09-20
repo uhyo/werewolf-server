@@ -27,6 +27,11 @@ module.exports={
         // contentBase: "./dist-client",
         port: 8888,
         proxy: {
+            '/ws/*': {
+                target: 'http://localhost:9999',
+                secure: false,
+                ws: true,
+            },
             '/': {
                 target: 'http://localhost:9999',
                 secure: false,

@@ -20,6 +20,8 @@ export function handleWs(ws: WebSocket, req: Request): void{
         gameid,
     } = req.params;
 
+    console.log('WS Conn', gameid);
+
     const event = getRoomConnection(parseInt(gameid));
     if (event == null){
         // そんな部屋はなかったようだ

@@ -8,15 +8,19 @@ import {
 import {
     roomReducer,
 } from '../reducer/index';
-
-const initialState: RoomState = {
-    logs: [{
-        type: 'message',
-        name: 'てすと次郎',
-        message: 'がおーーーー',
-    }],
-};
+import {
+    Socket,
+} from '../ws/ws';
 
 export function createRoomStore(): Store<RoomState>{
+    const initialState: RoomState = {
+        socket: new Socket(),
+        logs: [{
+            type: 'message',
+            name: 'てすと次郎',
+            message: 'がおーーーー',
+        }],
+    };
+
     return createStore<RoomState>(roomReducer, initialState);
 }

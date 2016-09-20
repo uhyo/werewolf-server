@@ -13,7 +13,7 @@
     "clean": "rimraf dist-server dist-ts dist-client dist-web",
     "lint": "find server/ client/ -name \"*.ts\" | xargs tslint --force",
     "start": "node dist-server/front/server",
-    "watch": "npm-run-all build --parallel watch:*",
+    "watch": "npm-run-all --parallel watch:*",
     "watch:bundle": "webpack-dev-server",
     "watch:lint": "watch 'npm run lint' server/ client/ --wait=0.3 --verbose",
     "watch:sass": "node-sass --watch --output dist-client/sass client/sass ",

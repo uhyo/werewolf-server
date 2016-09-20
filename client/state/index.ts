@@ -1,5 +1,9 @@
+import {
+    Socket,
+} from '../ws/ws';
 // Store for room page
 export interface RoomState{
+    socket: Socket;
     logs: Array<Log>;
 }
 
