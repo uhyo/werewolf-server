@@ -9,12 +9,13 @@ import {
     roomReducer,
 } from '../reducer/index';
 import {
-    Socket,
-} from '../ws/ws';
+    initRoomSocket,
+} from '../ws/index';
 
 export function createRoomStore(): Store<RoomState>{
+    const socket = initRoomSocket();
     const initialState: RoomState = {
-        socket: new Socket(),
+        socket,
         logs: [{
             type: 'message',
             name: 'てすと次郎',
