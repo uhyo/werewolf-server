@@ -2,6 +2,7 @@ import {
     Request,
 } from 'express';
 import * as WebSocket from 'ws';
+import * as config from 'config';
 
 import {
     getRoomConnection,
@@ -13,9 +14,7 @@ import {
 
 export function handleWs(ws: WebSocket, req: Request): void{
     // clientからのconnectionをhandleする
-    const {
-        sessionid,
-    } = req.query;
+    const sessionid = req.cookies[config.get<string>('session.cookie')];
     const {
         gameid,
     } = req.params;

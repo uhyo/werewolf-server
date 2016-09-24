@@ -5,9 +5,15 @@ import {
 import {
     RoomState,
 } from '../state/index';
+import {
+    CLIENT_INIT,
+} from '../../shared/protocol';
 
 export function initRoom(store: Store<RoomState>): void{
-    const _socket = store.getState().socket;
+    const socket = store.getState().socket;
 
-    // TODO
+    // 部屋の状況を要求する
+    socket.send({
+        type: CLIENT_INIT,
+    });
 }

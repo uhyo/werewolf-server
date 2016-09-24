@@ -10,13 +10,14 @@
         "strictNullChecks": true,
         "module":"commonjs",
         "target":"es5",
-        "rootDirs": ["server/", "dist-ts/"],
+        "rootDirs": ["server/", "dist-ts/", "shared/"],
         "outDir":"dist-server/",
         "jsx":"react"
     },
     "include":[
         "server/db/**/*.ts", "server/keeper/**/*.ts", "server/front/**/*.ts",
-        "dist-ts/**/*.ts"
+        "dist-ts/**/*.ts",
+        "shared/**/*.ts"
     ],
     "exclude":[
         "node_modules"

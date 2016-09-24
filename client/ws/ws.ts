@@ -53,13 +53,15 @@ export class Socket{
             const firstopen = this.state === 'connecting';
             this.state = 'open';
             this.reconnectionCount = 0;
-            if (firstopen && this.onopen){
+            if (firstopen){
                 // キューに入っているデータを発信する
                 for (let obj of this.queue){
                     this.send(obj);
                 }
                 this.queue = [];
-                this.onopen();
+                if (this.onopen){
+                    this.onopen();
+                }
             }
         };
         ws.onclose = ()=>{
@@ -79,12 +81,14 @@ export class Socket{
         if (this.state === 'connecting'){
             // まだ通信が開いていないのでキューに貯める
             this.queue.push(data);
+            return;
         }else if (this.state !== 'open'){
             // 送れないぞ〜〜〜〜〜〜
             console.debug('WebSocket data is discarded', data);
             return;
         }
         const str = JSON.stringify(data);
+        console.debug('Websocket sending', data);
         this.ws.send(str);
     }
     public close(): void{

@@ -11,11 +11,13 @@
         "module":"commonjs",
         "target":"es5",
         "outDir":"dist-client/",
-        "rootDirs": ["client", "dist-ts/client"],
+        "rootDirs": ["client", "dist-ts/client", "shared"],
         "jsx":"react"
     },
     "include":[
-        "client/**/*.ts", "client/**/*.tsx", "dist-ts/**/*.ts"
+        "client/**/*.ts", "client/**/*.tsx",
+        "dist-ts/**/*.ts",
+        "shared/**/*.ts"
     ],
     "exclude":[
         "node_modules"

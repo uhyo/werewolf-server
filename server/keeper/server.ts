@@ -17,7 +17,7 @@ import {
 import {
     CLIENT_JOIN,
     CLIENT_UNJOIN,
-} from './protocol';
+} from '../../shared/protocol';
 import {
     SessionUser,
     getUserData,
