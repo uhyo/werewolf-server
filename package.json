@@ -66,6 +66,6 @@
     "typescript": "^2.0.0",
     "watch": "^0.19.2",
     "webpack": "^1.13.2",
-    "webpack-dev-server": "^1.15.2"
+    "webpack-dev-server": "^3.1.14"
   }
 }
