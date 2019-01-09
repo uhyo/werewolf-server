@@ -18,7 +18,7 @@ export function createRoomStore(): Store<RoomState>{
         socket,
         logs: [{
             type: 'message',
-            name: 'てすと次郎',
+            name: 'てすと太郎',
             message: 'がおーーーー',
         }],
     };

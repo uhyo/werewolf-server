@@ -9,21 +9,22 @@ import {
     State,
 } from './state';
 import {
-    core,
-} from 'werewolf-core';
+    Log,
+    PlayerInfo,
+    field,
+    event,
+} from '../core';
 const {
     PHASE_DAY,
     PHASE_NIGHT,
-} = core.field;
+} = field;
 
 const {
     initNextPhaseEvent,
     initQueryPlayerInfoEvent,
     initPullLogsEvent,
     initChoiceEvent,
-} = core.event;
-type Log = core.log.Log;
-type PlayerInfo = core.lib.info.PlayerInfo;
+} = event;
 
 export class Keeper{
     private game: Game;

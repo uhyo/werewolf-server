@@ -11,6 +11,10 @@ interface IPropLog {
 }
 interface IStateLog {
 }
+
+/**
+ * Logを1つ表示するcomponent
+ */
 class LogComponent extends React.Component<IPropLog, IStateLog>{
     constructor(props: IPropLog){
         super(props);
@@ -41,6 +45,10 @@ interface IPropLogs {
 }
 interface IStateLogs {
 }
+
+/**
+ * logを全て表示するcomponent
+ */
 class LogsComponent extends React.Component<IPropLogs, IStateLogs>{
     shouldComponentUpdate(nextProps: IPropLogs, nextState: IStateLogs){
         return shallowCompare(this, nextProps, nextState);
